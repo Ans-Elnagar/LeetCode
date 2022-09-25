@@ -1,15 +1,18 @@
 class Solution {
     public boolean canBeEqual(int[] target, int[] arr) {
-        HashMap<Integer, Integer> map = new HashMap<>();
+        int[] counter = new int[1001];
+        Set<Integer> set = new HashSet<>();
         for(int num: target){
-            map.put(num, map.getOrDefault(num, 0) + 1);
+            counter[num]++;
+            set.add(num);
         }
-        for(int num: arr)
-            map.put(num, map.getOrDefault(num, 0) -1);
-        for(int num: map.keySet()){
-            if(map.get(num) != 0)
+        for(int num: arr){
+            counter[num]--;
+            set.add(num);
+        }
+        for(Integer num: set)
+            if(counter[num] != 0)
                 return false;
-        }
         return true;
     }
 }
