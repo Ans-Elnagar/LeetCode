@@ -3,8 +3,7 @@ class Solution {
         int len = s.length();
         Map<Character, Integer> map = new HashMap<>();
         for(int i=0; i<len; i++){
-            char ch = s.charAt(i);
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
         }
         int mask = Integer.MAX_VALUE - 1;
         int size = 0;
