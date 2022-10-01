@@ -1,8 +1,9 @@
 class Solution {
     public int longestPalindrome(String s) {
-        char[] chars = s.toCharArray();
+        int len = s.length();
         Map<Character, Integer> map = new HashMap<>();
-        for(char ch: chars){
+        for(int i=0; i<len; i++){
+            char ch = s.charAt(i);
             map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
         int mask = Integer.MAX_VALUE - 1;
