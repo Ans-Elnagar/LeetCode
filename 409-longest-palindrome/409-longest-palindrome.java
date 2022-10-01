@@ -10,7 +10,7 @@ class Solution {
         boolean containsOdd = false;
         for(char ch: map.keySet()){
             int count = map.get(ch);
-            if( !containsOdd && count%2==1 )
+            if( (count & 1) == 1 )
                 containsOdd = true;
             size += count & mask;
         }
