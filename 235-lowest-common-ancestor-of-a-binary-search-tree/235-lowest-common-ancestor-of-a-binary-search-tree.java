@@ -15,24 +15,13 @@ class Solution {
             p = q;
             q = temp;
         }
-        int min = -1000_000_000;
-        int max = 1000_000_000;
-        TreeNode parent, current;
-        parent = current = root;
-        while(inRange(min, max, p.val, q.val)){
-            parent = current;
-            if(current.left != null && q.val < current.val){
-                max = current.val - 1;
-                current = current.left;
+        while(root.val > q.val || root.val < p.val){
+            if(root.val > q.val){
+                root = root.left;
             }else{
-                min = current.val + 1;
-                current = current.right;
+                root = root.right;
             }
         }
-        return parent;
-    }
-    private boolean inRange(int min, int max, int p, int q){
-        return min <= p && p <= max
-            && min <= q && q <= max;
+        return root;
     }
 }
