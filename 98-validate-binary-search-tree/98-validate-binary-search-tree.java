@@ -20,7 +20,7 @@ class Solution {
     private boolean isValid(TreeNode node, long min, long max){
         if(node == null)
             return true;
-        if( min > max || node.val > max || node.val < min)
+        if(node.val > max || node.val < min)
             return false;
         return isValid(node.left, min, node.val-1l) && isValid(node.right, node.val+1l, max);
     }
