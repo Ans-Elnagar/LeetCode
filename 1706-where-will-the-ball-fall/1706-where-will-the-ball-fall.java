@@ -20,7 +20,11 @@ class Solution {
                 mem[i][width-1] = mem[i+1][width-2];
             
             for(int j=1; j<width-1; j++){
-                if(grid[i][j] == -1){
+                if(grid[i][j + grid[i][j]] == grid[i][j])
+                    mem[i][j] = mem[i+1][j + grid[i][j]];
+                else
+                    mem[i][j] = -1;
+                /*if(grid[i][j] == -1){
                     if(grid[i][j-1] == 1)
                         mem[i][j] = -1;
                     else
@@ -30,7 +34,7 @@ class Solution {
                         mem[i][j] = -1;
                     else
                         mem[i][j] = mem[i+1][j+1];
-                }
+                }*/
             }
         }
         return mem[0];
