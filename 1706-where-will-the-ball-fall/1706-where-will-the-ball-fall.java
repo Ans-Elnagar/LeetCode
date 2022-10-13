@@ -9,8 +9,16 @@ class Solution {
         for(int j=0; j<width; j++)
             mem[height][j] = j;
         for(int i=height-1; i>=0; i--){
-            mem[i][0] = (grid[i][0] == -1 || grid[i][1] == -1) ? -1 : mem[i+1][1];
-            mem[i][width-1] = (grid[i][width-1] == 1 || grid[i][width-2] == 1)? -1 : mem[i+1][width-2];  
+            if(grid[i][0] == -1 || grid[i][1] == -1)
+                mem[i][0] = -1;
+            else
+                mem[i][0] = mem[i+1][1];
+            
+            if(grid[i][width-1] == 1 || grid[i][width-2] == 1)
+                mem[i][width-1] = -1;
+            else
+                mem[i][width-1] = mem[i+1][width-2];
+            
             for(int j=1; j<width-1; j++){
                 if(grid[i][j + grid[i][j]] == grid[i][j])
                     mem[i][j] = mem[i+1][j + grid[i][j]];
