@@ -1,9 +1,7 @@
 class MyHashMap {
-    int[] map;
+    Integer[] map;
     public MyHashMap() {
-        map = new int[1000_001];
-        for(int i=0; i< 1000_001; i++)
-            map[i] = -1;
+        map = new Integer[1000_001];
     }
     
     public void put(int key, int value) {
@@ -11,11 +9,13 @@ class MyHashMap {
     }
     
     public int get(int key) {
-        return map[key];
+        if(map[key] != null)
+            return map[key];
+        return -1;
     }
     
     public void remove(int key) {
-        map[key]=-1;
+        map[key] = null;
     }
 }
 
