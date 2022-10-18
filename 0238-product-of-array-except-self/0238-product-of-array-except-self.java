@@ -7,8 +7,9 @@ class Solution {
         }
         int product = 1;
         for(int i=nums.length-2; i>=0; i--){
-            answer[i] *= product * nums[i+1];
             product *= nums[i+1];
+            answer[i] *= product;
+            
         }
         return answer;
     }
