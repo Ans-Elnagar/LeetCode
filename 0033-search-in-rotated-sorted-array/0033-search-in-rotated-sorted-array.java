@@ -5,9 +5,12 @@ class Solution {
                 return 0;
             return -1;
         }
-        int r = findRealStart(nums);
-        return Math.max(bs(nums, 0, r-1, target),
-                       bs(nums, r, nums.length-1, target));
+        int r=0;
+        if(nums[0] >= nums[nums.length-1])
+            r = findRealStart(nums);
+        if(target > nums[nums.length-1])
+            return bs(nums, 0, r-1, target);
+        return bs(nums, r, nums.length-1, target);
     }
     private int findRealStart(int[] nums){
         int low=1, high = nums.length-1, mid = 0;
