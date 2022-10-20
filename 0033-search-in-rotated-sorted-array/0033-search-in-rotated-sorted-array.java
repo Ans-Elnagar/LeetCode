@@ -28,13 +28,15 @@ class Solution {
         return mid;
     }
     private int bs(int[] nums, int low, int high, int target){
-        if(low > high)
-            return -1;
-        int mid = (low + high) / 2;
-        if(nums[mid] == target)
-            return mid;
-        if(nums[mid] < target)
-            return bs(nums, mid+1, high, target);
-        return bs(nums, low, mid-1, target);
+        while(low <= high){
+            int mid = (low + high) / 2;
+            if(nums[mid] == target)
+                return mid;
+            else if(nums[mid] < target)
+                low = mid+1;
+            else
+                high = mid-1;
+        }
+        return -1;
     }
 }
