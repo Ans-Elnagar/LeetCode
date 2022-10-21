@@ -7,10 +7,7 @@ class Solution {
                 map.put(key, new LinkedList<String>());
             map.get(key).add(s);
         }
-        List<List<String>> list = new LinkedList<>();
-        for(String key: map.keySet())
-            list.add(map.get(key));
-        return list;
+        return new ArrayList<>(map.values());
     }
     private String anagramKey(String s){
         int[] freq = new int[26];
