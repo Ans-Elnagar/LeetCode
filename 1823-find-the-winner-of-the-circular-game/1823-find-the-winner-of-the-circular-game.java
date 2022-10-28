@@ -1,18 +1,27 @@
 class Solution {
     public int findTheWinner(int n, int k) {
-        Queue<Integer> queue = new LinkedList<>();
-        for(int i=1; i<=n; i++)
-            queue.add(i);
-        for(int i=1; i<n; i++){
-            int temp = k;
-            while(temp>0){
-                int friend = queue.remove();
-                temp--;
-                if(temp == 0)
-                    break;
-                queue.add(friend);
-            }
+        boolean[] friends = new boolean[n];
+        int start=0;
+        while(n != 1){
+            start = (start+k-1)%n;
+            excludeFriend(friends, start);
+            n--;
         }
-        return queue.remove();
+        for(int i=0; i<friends.length; i++){
+            if(! friends[i])
+                return i+1;
+        }
+        return -1;
+    }
+    private void excludeFriend(boolean[] friends, int index){
+        int i=0;
+        for(; i<friends.length; i++){
+            if(friends[i])
+                continue;
+            if(index == 0)
+                break;
+            index--;
+        }
+        friends[i] = true;
     }
 }
