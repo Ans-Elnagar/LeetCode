@@ -13,9 +13,12 @@ class Solution {
         Queue<TreeNode> containsQ = new LinkedList<>();
         doesContain(containsP, root, p);
         doesContain(containsQ, root, q);
-        while(!containsP.isEmpty()){
-            TreeNode node = containsP.remove();
-            if(containsQ.contains(node))
+        Set<TreeNode> set = new HashSet<>();
+        while(!containsP.isEmpty())
+            set.add(containsP.remove());
+        while(!containsQ.isEmpty()){
+            TreeNode node = containsQ.remove();
+            if(set.contains(node))
                 return node;
         }
         return null;
