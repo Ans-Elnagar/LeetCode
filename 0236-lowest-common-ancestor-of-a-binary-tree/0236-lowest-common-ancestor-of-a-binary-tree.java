@@ -14,12 +14,17 @@ class Solution {
         doesContain(containsP, root, p);
         doesContain(containsQ, root, q);
         // making p always bigger or equal
-        if(containsP.size() < containsQ.size()){
+        int lenP = containsP.size();
+        int lenQ = containsQ.size();
+        if(lenP < lenQ){
             Queue<TreeNode> temp = containsP;
             containsP = containsQ;
             containsQ = temp;
+            int lenTemp = lenP;
+            lenP = lenQ;
+            lenQ = lenTemp;
         }
-        int diffLen = containsP.size() - containsQ.size();
+        int diffLen = lenP - lenQ;
         while(diffLen-->0)
             containsP.remove();
         while(!containsP.isEmpty()){
