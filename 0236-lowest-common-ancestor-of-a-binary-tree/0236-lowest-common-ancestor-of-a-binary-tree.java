@@ -13,13 +13,25 @@ class Solution {
         Queue<TreeNode> containsQ = new LinkedList<>();
         doesContain(containsP, root, p);
         doesContain(containsQ, root, q);
-        Set<TreeNode> set = new HashSet<>();
-        while(!containsP.isEmpty())
-            set.add(containsP.remove());
-        while(!containsQ.isEmpty()){
-            TreeNode node = containsQ.remove();
-            if(set.contains(node))
-                return node;
+        // making p always bigger or equal
+        int lenP = containsP.size();
+        int lenQ = containsQ.size();
+        if(lenP < lenQ){
+            Queue<TreeNode> temp = containsP;
+            containsP = containsQ;
+            containsQ = temp;
+            int lenTemp = lenP;
+            lenP = lenQ;
+            lenQ = lenTemp;
+        }
+        int diffLen = lenP - lenQ;
+        while(diffLen-->0)
+            containsP.remove();
+        while(lenP-->0){
+            TreeNode t1 = containsP.remove();
+            TreeNode t2 = containsQ.remove();
+            if(t1 == t2)
+                return t1;
         }
         return null;
     }
