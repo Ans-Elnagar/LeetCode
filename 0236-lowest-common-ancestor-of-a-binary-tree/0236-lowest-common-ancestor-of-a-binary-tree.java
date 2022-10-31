@@ -27,7 +27,7 @@ class Solution {
         int diffLen = lenP - lenQ;
         while(diffLen-->0)
             containsP.remove();
-        while(!containsP.isEmpty()){
+        while(lenP-->0){
             TreeNode t1 = containsP.remove();
             TreeNode t2 = containsQ.remove();
             if(t1 == t2)
